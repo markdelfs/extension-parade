@@ -8,7 +8,7 @@ Requires macOS 13 or newer; includes Apple Silicon and Intel binaries.
 
 Drag **Extension Parade.app** into Applications and open it. Use the stacked-squares menu bar icon to replay, stop, loop, keep the icons visible, change size (32–128 px), or choose a loading speed. Launch at Login is optional and uses Apple's ServiceManagement API. The parade also replays after wake. Hold Shift at login to use macOS's normal login-item suppression.
 
-The overlay uses the main display. With a bottom Dock it sits above the Dock's reserved area; with automatic hiding it sits at the bottom edge without reserving hidden Dock space. With a left or right Dock, the parade sits along the bottom center. The default icon size is 80 px. It follows display geometry while visible. This is a visual simulation; icons don't represent actual extension loading.
+The overlay uses the main display. With a bottom Dock it sits above the Dock's reserved area; with automatic hiding it sits at the bottom edge without reserving hidden Dock space. With a left or right Dock, the parade sits along the bottom-left. The default icon size is 80 px. The row begins 12 px from the left edge and fills toward the right. It follows display geometry while visible. This is a visual simulation; icons don't represent actual extension loading.
 
 ## Build
 

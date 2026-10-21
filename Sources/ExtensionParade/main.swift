@@ -95,7 +95,7 @@ final class Overlay: NSPanel {
         let height = size + 8
         let y = orientation == "bottom" ? max(v.minY, f.minY) + 4 : f.minY + 4
         view.iconSize = min(size, max(16, (width + 8) / CGFloat(max(1, view.icons.count)) - 8))
-        panel.setFrame(NSRect(x: f.midX - width / 2, y: y, width: width, height: height), display: true)
+        panel.setFrame(NSRect(x: f.minX + 12, y: y, width: width, height: height), display: true)
     }
     @objc func play() {
         generation += 1; let token = generation
@@ -142,7 +142,7 @@ final class Overlay: NSPanel {
         catch { NSApp.activate(ignoringOtherApps: true); let alert = NSAlert(); alert.messageText = "Couldn’t change Launch at Login"; alert.informativeText = error.localizedDescription; alert.runModal() }
         rebuildMenu()
     }
-    @objc func about() { NSApp.activate(ignoringOtherApps: true); NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "Extension Parade", .applicationVersion: "1.0.1", .credits: NSAttributedString(string: "A little startup ritual, inspired by Mac OS 9.\nYour extensions, one at a time, above the Dock.")]) }
+    @objc func about() { NSApp.activate(ignoringOtherApps: true); NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "Extension Parade", .applicationVersion: "1.0.2", .credits: NSAttributedString(string: "A little startup ritual, inspired by Mac OS 9.\nYour extensions, one at a time, above the Dock.")]) }
     @objc func quit() { NSApp.terminate(nil) }
 }
 MainActor.assumeIsolated {
