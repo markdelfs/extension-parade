@@ -4,6 +4,10 @@ A native macOS menu bar app inspired by the parade of extensions during Mac OS 9
 
 Requires macOS 13 or newer; includes Apple Silicon and Intel binaries.
 
+## Download
+
+Download the signed, Apple-notarized installer from the [latest release](https://github.com/markdelfs/extension-parade/releases/latest).
+
 ## Use
 
 Drag **Extension Parade.app** into Applications and open it. Use the stacked-squares menu bar icon to replay, stop, loop, keep the icons visible, change size (32–128 px), or choose a loading speed. Launch at Login is optional and uses Apple's ServiceManagement API. The parade also replays after wake. Hold Shift at login to use macOS's normal login-item suppression.
@@ -28,6 +32,6 @@ The release script signs nested Sparkle components before the app, notarizes and
 
 ## Updates
 
-Sparkle 2.10.0 is embedded, with the existing account's Ed25519 public key and an HTTPS appcast configured for this repository's `updates` release. Publication is pending user approval; until then online update checks will fail because the feed is not hosted. Use **Check for Updates…** in the menu. New releases require a larger `CFBundleVersion`, a Developer ID signed and notarized app, and a signed archive using Sparkle's `sign_update` or `generate_appcast` tools. Upload the archive and replace the appcast only after successful notarization.
+Sparkle 2.10.0 is embedded, with the existing account's Ed25519 public key and an HTTPS appcast configured for this repository's `updates` release. The signed feed is published alongside the public release assets. Use **Check for Updates…** in the menu. New releases require a larger `CFBundleVersion`, a Developer ID signed and notarized app, and a signed archive using Sparkle's `sign_update` or `generate_appcast` tools. Upload the archive and replace the appcast only after successful notarization.
 
 Icons were supplied by the user. No ownership or redistribution license for those images is asserted. Sparkle's license is included with the app under Resources.
