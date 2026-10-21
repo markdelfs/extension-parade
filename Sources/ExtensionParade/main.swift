@@ -30,7 +30,7 @@ final class Overlay: NSPanel {
     var layoutTimer: Timer?
     var updater: SPUStandardUpdaterController!
     var looping: Bool { defaults.bool(forKey: "loop") }
-    var size: CGFloat { let n = defaults.double(forKey: "size"); return n > 0 ? n : 40 }
+    var size: CGFloat { let n = defaults.double(forKey: "size"); return n > 0 ? n : 80 }
     var interval: Double { let n = defaults.double(forKey: "interval"); return n > 0 ? n : 0.65 }
     func applicationDidFinishLaunching(_ notification: Notification) {
         let folder = Bundle.main.resourceURL!.appendingPathComponent("Icons")
@@ -75,7 +75,7 @@ final class Overlay: NSPanel {
         m.addItem(.separator())
         m.addItem(menuItem("Loop Parade", #selector(toggleLoop), state: looping))
         m.addItem(menuItem("Keep Icons Visible", #selector(toggleKeep), state: defaults.bool(forKey: "keep")))
-        let sizes = NSMenu(); for n in [24, 32, 40, 48, 64] { sizes.addItem(menuItem("\(n) px", #selector(setSize(_:)), state: Int(size) == n, tag: n)) }
+        let sizes = NSMenu(); for n in [32, 48, 64, 80, 96, 128] { sizes.addItem(menuItem("\(n) px", #selector(setSize(_:)), state: Int(size) == n, tag: n)) }
         let si = NSMenuItem(title: "Icon Size", action: nil, keyEquivalent: ""); si.submenu = sizes; m.addItem(si)
         let speeds = NSMenu(); for (name, n) in [("Brisk", 350), ("Classic", 650), ("Leisurely", 1000)] { speeds.addItem(menuItem(name, #selector(setSpeed(_:)), state: Int((interval * 1000).rounded()) == n, tag: n)) }
         let sp = NSMenuItem(title: "Loading Speed", action: nil, keyEquivalent: ""); sp.submenu = speeds; m.addItem(sp)
@@ -93,9 +93,7 @@ final class Overlay: NSPanel {
         let orientation = dock?.string(forKey: "orientation") ?? "bottom"
         let width = min(CGFloat(view.icons.count) * (size + 8) - 8, f.width - 32)
         let height = size + 8
-        let dockSize = dock?.double(forKey: "tilesize") ?? 64
-        let hiddenDockHeight = (dock?.bool(forKey: "autohide") ?? false) ? max(32, dockSize) + 20 : 0
-        let y = orientation == "bottom" ? max(v.minY, f.minY + hiddenDockHeight) + 8 : f.minY + 16
+        let y = orientation == "bottom" ? max(v.minY, f.minY) + 4 : f.minY + 4
         view.iconSize = min(size, max(16, (width + 8) / CGFloat(max(1, view.icons.count)) - 8))
         panel.setFrame(NSRect(x: f.midX - width / 2, y: y, width: width, height: height), display: true)
     }
@@ -144,7 +142,7 @@ final class Overlay: NSPanel {
         catch { NSApp.activate(ignoringOtherApps: true); let alert = NSAlert(); alert.messageText = "Couldn’t change Launch at Login"; alert.informativeText = error.localizedDescription; alert.runModal() }
         rebuildMenu()
     }
-    @objc func about() { NSApp.activate(ignoringOtherApps: true); NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "Extension Parade", .applicationVersion: "1.0.0", .credits: NSAttributedString(string: "A little startup ritual, inspired by Mac OS 9.\nYour extensions, one at a time, above the Dock.")]) }
+    @objc func about() { NSApp.activate(ignoringOtherApps: true); NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "Extension Parade", .applicationVersion: "1.0.1", .credits: NSAttributedString(string: "A little startup ritual, inspired by Mac OS 9.\nYour extensions, one at a time, above the Dock.")]) }
     @objc func quit() { NSApp.terminate(nil) }
 }
 MainActor.assumeIsolated {
